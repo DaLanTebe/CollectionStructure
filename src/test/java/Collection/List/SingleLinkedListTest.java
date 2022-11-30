@@ -145,14 +145,14 @@ class SingleLinkedListTest {
     }
 
     @Test
-    void removeFirstOfMany(){
+    void removeFirstOfMany() {
         SingleLinkedList<String> list = new SingleLinkedList<>();
         list.add("1");
         list.add("2");
         list.add("3");
         list.add("4");
         list.remove(0);
-        assertEquals(3,list.size());
+        assertEquals(3, list.size());
         assertEquals("2", list.get(0));
         assertEquals("3", list.get(1));
         assertEquals("4", list.get(2));
@@ -165,27 +165,235 @@ class SingleLinkedListTest {
     }
 
     @Test
-    void removeLastOfMany(){
-        // то же самое что и first
+    void removeLastOfMany() {
+        SingleLinkedList<String> list = new SingleLinkedList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.remove(3);
+        assertEquals(3, list.size());
+        assertEquals("1", list.get(0));
+        assertEquals("2", list.get(1));
+        assertEquals("3", list.get(2));
+        list.add(3, "5");
+        assertEquals(4, list.size());
+        assertEquals("1", list.get(0));
+        assertEquals("2", list.get(1));
+        assertEquals("3", list.get(2));
+        assertEquals("5", list.get(3));
     }
 
     @Test
-    void removeOfMany(){
-        //добав 5 эл удалить второй
+    void removeOfMany() {
+        SingleLinkedList<String> list = new SingleLinkedList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.add("5");
+
+        list.remove(2);
+        assertEquals(5, list.size());
+        assertEquals("1", list.get(0));
+        assertEquals("2", list.get(1));
+        assertEquals("4", list.get(2));
+        assertEquals("5", list.get(3));
     }
 
     @Test
-    void removeElementOfElement(){
+    void removeElementOfElement() {
+        SingleLinkedList<String> list = new SingleLinkedList<>();
+        list.add("1");
+
+        assertTrue(list.remove("1"));
+        assertEquals(0, list.size());
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        assertEquals("1", list.get(0));
+        assertEquals("2", list.get(1));
+        assertEquals("3", list.get(2));
+        assertEquals("4", list.get(3));
+    }
+
+    @Test
+    void removeFirstOfTwoElementsOfElement() {
+        SingleLinkedList<String> list = new SingleLinkedList<>();
+        list.add("1");
+        list.add("2");
+
+        assertTrue(list.remove("1"));
+        assertEquals(1, list.size());
+        assertEquals("2", list.get(0));
+        list.add(0, "7");
+        list.add("4");
+        list.add("5");
+        assertEquals(4, list.size());
+        assertEquals("7", list.get(0));
+        assertEquals("2", list.get(1));
+        assertEquals("4", list.get(2));
+        assertEquals("5", list.get(3));
 
     }
 
     @Test
-    void removeFirstOfTwoElementsOfElement(){
-        //удалить первый элемент из 2 элементов удаление по элементу
+    void removeSecondOfTwoElementsOfElement() {
+        SingleLinkedList<String> list = new SingleLinkedList<>();
+        list.add("1");
+        list.add("2");
+
+        assertTrue(list.remove("2"));
+        assertEquals(1, list.size());
+        assertEquals("1", list.get(0));
+        list.add(1, "7");
+        list.add("3");
+        list.add("4");
+        assertEquals(4, list.size());
+        assertEquals("1", list.get(0));
+        assertEquals("7", list.get(1));
+        assertEquals("3", list.get(2));
+        assertEquals("4", list.get(3));
     }
 
     @Test
-    void removeSecondOfTwoElementsOfElement(){
-        //второй элемент
+    void removeFirstOfManyOfElement() {
+        SingleLinkedList<String> list = new SingleLinkedList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+
+        assertTrue(list.remove("1"));
+        assertEquals(3, list.size());
+        assertEquals("2", list.get(0));
+        assertEquals("3", list.get(1));
+        assertEquals("4", list.get(2));
+        list.add(0, "5");
+        assertEquals(4, list.size());
+        assertEquals("5", list.get(0));
+        assertEquals("2", list.get(1));
+        assertEquals("3", list.get(2));
+        assertEquals("4", list.get(3));
+
+    }
+
+    @Test
+    void removeLastOfManyOfElement() {
+        SingleLinkedList<String> list = new SingleLinkedList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+
+        assertTrue(list.remove("4"));
+        assertEquals(3, list.size());
+        assertEquals("1", list.get(0));
+        assertEquals("2", list.get(1));
+        assertEquals("3", list.get(2));
+        list.add("5");
+        assertEquals(4, list.size());
+        assertEquals("1", list.get(0));
+        assertEquals("2", list.get(1));
+        assertEquals("3", list.get(2));
+        assertEquals("5", list.get(3));
+    }
+
+    @Test
+    void removeManyOfElement() {
+        SingleLinkedList<String> list = new SingleLinkedList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.add("5");
+
+        assertTrue(list.remove("3"));
+        assertEquals(4, list.size());
+        assertEquals("1", list.get(0));
+        assertEquals("2", list.get(1));
+        assertEquals("4", list.get(2));
+        assertEquals("5", list.get(3));
+    }
+
+    @Test
+    void removeZeroElement() {
+        SingleLinkedList<String> list = new SingleLinkedList<>();
+        assertFalse(list.remove("1"));
+        assertEquals(0, list.size());
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.add("5");
+        assertEquals(4, list.size());
+        assertEquals("2", list.get(0));
+        assertEquals("3", list.get(1));
+        assertEquals("4", list.get(2));
+        assertEquals("5", list.get(3));
+    }
+
+    @Test
+    void removeZeroOfOneElementOfElement() {
+        SingleLinkedList<String> list = new SingleLinkedList<>();
+        list.add("1");
+
+        assertFalse(list.remove("2"));
+        assertEquals(1, list.size());
+        list.add("3");
+        list.add("4");
+        list.add("5");
+        assertEquals(4, list.size());
+        assertEquals("1", list.get(0));
+        assertEquals("3", list.get(1));
+        assertEquals("4", list.get(2));
+        assertEquals("5", list.get(3));
+    }
+
+    @Test
+    void removeZeroOfTwoElementOfElement() {
+        SingleLinkedList<String> list = new SingleLinkedList<>();
+        list.add("1");
+        list.add("2");
+
+        assertFalse(list.remove("3"));
+        assertEquals(2, list.size());
+        assertEquals("1", list.get(0));
+        assertEquals("2", list.get(1));
+        list.add("4");
+        list.add("5");
+
+        assertEquals(4, list.size());
+        assertEquals("1", list.get(0));
+        assertEquals("2", list.get(1));
+        assertEquals("4", list.get(2));
+        assertEquals("5", list.get(3));
+    }
+
+    @Test
+    void removeZeroOfManyElements() {
+        SingleLinkedList<String> list = new SingleLinkedList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+
+        assertFalse(list.remove("5"));
+        assertEquals(4, list.size());
+        assertEquals("1", list.get(0));
+        assertEquals("2", list.get(1));
+        assertEquals("3", list.get(2));
+        assertEquals("4", list.get(3));
+    }
+
+    @Test
+    void clear() {
+        SingleLinkedList<String> list = new SingleLinkedList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.clear();
+        assertEquals(0, list.size());
     }
 }

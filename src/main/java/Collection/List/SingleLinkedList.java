@@ -123,7 +123,7 @@ public class SingleLinkedList<T> implements List<T> {
             firstNode = lastNode;
             size--;
             return true;
-        }else if (Objects.equals(lastNode, element)){
+        }else if (Objects.equals(lastNode.value, element)){
             lastNode = firstNode;
             firstNode.nextSingleNode = null;
             size--;
