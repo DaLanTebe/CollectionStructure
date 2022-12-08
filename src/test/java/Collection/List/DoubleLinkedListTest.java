@@ -154,7 +154,18 @@ class DoubleLinkedListTest {
     }
     @Test
     void removeLastOfMany(){
-        //complete
+        DoubleLinkedList<String> list = new DoubleLinkedList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.remove(3);
+        assertEquals(3, list.size());
+        assertEquals("1", list.get(0));
+        assertEquals("2", list.get(1));
+        assertEquals("3", list.get(2));
+        list.add(3, "4");
+        check(list);
     }
     @Test
     void removeMiddleOfMany(){
@@ -181,23 +192,62 @@ class DoubleLinkedListTest {
     }
     @Test
     void removeFirstOfTwoElements(){
-
+        DoubleLinkedList<String> list = new DoubleLinkedList<>();
+        list.add("1");
+        list.add("2");
+        list.remove("1");
+        assertEquals(1, list.size());
+        assertEquals("2", list.get(0));
     }
     @Test
     void removeSecondOfTwoElements(){
-
+        DoubleLinkedList<String> list = new DoubleLinkedList<>();
+        list.add("1");
+        list.add("2");
+       list.remove("2");
+       assertEquals(1,list.size());
+       assertEquals("1", list.get(0));
     }
     @Test
     void removeFirstOfManyElements(){
-
+        DoubleLinkedList<String> list = new DoubleLinkedList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.remove("1");
+        assertEquals(3, list.size());
+        assertEquals("2", list.get(0));
+        assertEquals("3", list.get(1));
+        assertEquals("4", list.get(2));
+        list.add(0, "1");
+        check(list);
     }
     @Test
     void removeLastOfManyElements(){
-
+        DoubleLinkedList<String> list = new DoubleLinkedList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.remove("4");
+        assertEquals(3, list.size());
+        assertEquals("1", list.get(0));
+        assertEquals("2", list.get(1));
+        assertEquals("3", list.get(2));
+        list.add(3, "4");
+        check(list);
     }
     @Test
     void removeMiddleOfManyElements(){
-
+        DoubleLinkedList<String> list = new DoubleLinkedList<>();
+        list.add("1");
+        list.add("5");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.remove("5");
+        check(list);
     }
     @Test
     void removeUnknownOfManyElements(){
