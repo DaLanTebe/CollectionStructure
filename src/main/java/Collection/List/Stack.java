@@ -1,7 +1,6 @@
 package Collection.List;
 
 import Collection.AbstractCollection;
-import Collection.Queue.NormalQueue;
 
 import java.util.Objects;
 
